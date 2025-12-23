@@ -1,0 +1,25 @@
+[include]
+	path = ~/.config/delta/catppuccin.gitconfig
+
+[delta]
+    features = catppuccin-frappe
+	side-by-side = false # Prefer this set to true for cli but is set to false beacause thats better for lazygit
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    navigate = true  # use n and N to move between diff sections
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user]
+	name = Benjamin Jurewicz
+	email = 94708038+BenJurewicz@users.noreply.github.com

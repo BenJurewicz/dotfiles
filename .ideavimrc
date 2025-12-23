@@ -1,0 +1,271 @@
+" Modified version of https://github.com/OptimusCrime/ideavim
+
+" basic stuff
+set ideajoin
+set hlsearch
+set scrolloff=5
+set ignorecase smartcase
+set showmode
+set history=1000
+set incsearch
+set clipboard+=unnamed
+set relativenumber
+set ReplaceWithRegister
+set visualbell
+set idearefactormode=visual
+set showcmd
+set showmode
+set ideastatusicon=gray
+set virtualedit=onemore
+
+" extensions
+set surround
+set multicursor
+set highlightedyank
+set NERDTree
+set argtextobj
+set sneak
+set quickscope
+
+" Matches html tags with % in addition to brackets
+set matchit
+" Makes it work in tsx and jsx files
+autocmd FileType tsx,jsx let b:match_words = '<:>'
+
+" WhichKey configuration (plugin is toggled by <leader>8)
+set which-key
+set notimeout
+" let g:WhichKey_PrefixColor = "#a403fe"
+let g:WhichKey_PrefixColor = "#D660FF"
+let g:WhichKey_CommandColor = "#01ffff"
+let g:WhichKey_PrefixStyle = "bold"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_ShowTypedSequence = "true"
+" TODO: Write descriptions for all keys
+" https://github.com/TheBlob42/idea-which-key
+
+" register leader
+let mapleader = " "
+
+" Yank and paste from clipboard
+" Not needed on macOS
+" for windows, possibly need to add the same for c (cut)
+" nnoremap y "+y
+" vnoremap y "+y
+" nnoremap yy "+yy
+" nnoremap p "+p
+
+" have x (removes single character) not go into the default registry
+nnoremap x "_x
+" Make X an operator that removes without placing text in the default registry
+nmap X "_d
+nmap XX "_dd
+vmap X "_d
+vmap x "_d
+
+" don't yank to default register when deleting something
+nnoremap d "_d
+nnoremap D "_D
+nnoremap D "_D
+vnoremap d "_d
+vnoremap d "_d
+
+" Center screen when jumping to next match
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap n nzz
+vnoremap N Nzz
+
+" Center screen when moving up and down
+nnoremap <C-u> <C-u>zz
+nnoremap <C-o> <C-d>zz
+vnoremap <C-u> <C-u>zz
+vnoremap <C-o> <C-d>zz
+
+" easy window navigation
+nnoremap <a-j> gT
+nnoremap <a-k> gt
+nnoremap <c-s-tab> gT
+nnoremap <c-tab> gt
+
+" Window Management
+nmap <leader>wa :tabo<CR>
+let g:WhichKeyDesc_Window = "<leader>w Window Management"
+let g:WhichKeyDesc_CloseOtherTabs = "<leader>wa Close all other tabs except the current one"
+
+" Motions
+set easymotion
+nmap <Leader><Leader>f <Plug>(easymotion-s)
+nmap <Leader><Leader>t <Plug>(easymotion-bd-t)
+nmap <Leader><Leader>w <Plug>(easymotion-bd-w)
+let g:WhichKeyDesc_easy_char = "<leader><leader>f Jump to any char (bidirectional)"
+let g:WhichKeyDesc_easy_before_char = "<leader><leader>t Jump in front of any char (bidirectional)"
+let g:WhichKeyDesc_easy_word = "<leader><leader>w Jump to the beginning of any word (bidirectional)"
+
+" code Refactoring
+let g:WhichKeyDesc_refactoring = "<leader>r Refactoring"
+let g:WhichKeyDesc_rename_element = "<leader>rr Rename Element"
+let g:WhichKeyDesc_refactor_quick_list = "<leader>rR Refactor Quick List"
+let g:WhichKeyDesc_surround_with = "<leader>rs Surround With"
+let g:WhichKeyDesc_optimize_imports = "<leader>ri Optimize Imports"
+:map <leader>rr <Action>(RenameElement)<esc>
+:map <leader>rR <Action>(Refactorings.QuickListPopupAction)
+:map <leader>rs <Action>(SurroundWith)
+:map <leader>ri <Action>(OptimizeImports)
+
+" Hover information
+let g:WhichKeyDesc_hover_information = "<leader>h Hover Information"
+let g:WhichKeyDesc_quick_java_doc = "<leader>hr Quick Java Doc"
+let g:WhichKeyDesc_show_error_description = "<leader>he Show Error Description"
+let g:WhichKeyDesc_quick_implementations = "<leader>hh Quick Implementations"
+let g:WhichKeyDesc_show_hover_info = "<leader>hi Show Hover Info"
+:map <leader>hr <Action>(QuickJavaDoc)
+:map <leader>he <Action>(ShowErrorDescription)
+:map <leader>hh <Action>(QuickImplementations)
+:map <leader>hi <Action>(ShowHoverInfo)
+
+" breakpoints and config
+let g:WhichKeyDesc_run_configuration = "<leader>d Debug / Run Configuration"
+let g:WhichKeyDesc_debug_configuration = "<leader>dg Debug Configuration"
+let g:WhichKeyDesc_toggle_breakpoint = "<leader>db Toggle Breakpoint"
+let g:WhichKeyDesc_view_breakpoints = "<leader>dv View Breakpoints"
+let g:WhichKeyDesc_remove_all_breakpoints = "<leader>dr Remove All Breakpoints"
+:map <leader>dR <Action>(ChooseRunConfiguration)
+:map <leader>dG <Action>(ChooseDebugConfiguration)
+:map <leader>db <Action>(ToggleLineBreakpoint)
+:map <leader>dv <Action>(ViewBreakpoints)
+:map <leader>dr <Action>(Debugger.RemoveAllBreakpoints)
+
+" run stuff
+let g:WhichKeyDesc_run = "<leader>R Run"
+let g:WhichKeyDesc_debug = "<leader>D Debug"
+let g:WhichKeyDesc_stop = "<leader>S Stop"
+:map <leader>R <Action>(Run)
+:map <leader>D <Action>(Debug)
+:map <leader>S <Action>(Stop)
+
+" bookmarks
+" nmap <leader>bs <Action>(ShowBookmarks)
+" nmap <leader>bt <Action>(ActivateBookmarksToolWindow)
+" nmap <leader>bb <Action>(ToggleBookmark)
+" nmap <leader>be <Action>(EditBookmark)
+" nmap <leader>bp <Action>(GotoPreviousBookmark)
+" nmap <leader>bn <Action>(GotoNextBookmark)
+
+let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"
+let g:WhichKeyDesc_bookmarks_menu = "<leader>bm Bookmark Menu"
+let g:WhichKeyDesc_bookmarks_show = "<leader>bs Show Bookmarks"
+let g:WhichKeyDesc_bookmarks_tool = "<leader>bt Bookmark Tool"
+let g:WhichKeyDesc_bookmarks_toggle_bookmark = "<leader>bb Toggle Bookmark"
+let g:WhichKeyDesc_bookmarks_edit = "<leader>be Edit Bookmark"
+let g:WhichKeyDesc_bookmarks_prev = "<leader>bp Previous Bookmark"
+let g:WhichKeyDesc_bookmarks_next = "<leader>bn Next Bookmark"
+
+" comment out
+let g:WhichKeyDesc_comment = "<leader>c Comment"
+let g:WhichKeyDesc_comment_by_line_comment = "<leader>cl Comment By Line Comment"
+let g:WhichKeyDesc_comment_by_block_comment = "<leader>cb Comment By Block Comment"
+:map <leader>cl <Action>(CommentByLineComment)
+:map <leader>cb <Action>(CommentByBlockComment)
+
+" various functionality
+:map <leader>hu <Action>(HighlightUsagesInFile)
+:map <leader>lr <Action>(RecentLocations)
+:map gy <Action>(RecentChangedFiles)
+:map <leader>lh <Action>(LocalHistory.ShowHistory)
+:map <leader>m <Action>(ShowIntentionActions)
+:map <leader>o <Action>(FileStructurePopup)
+:map gd <Action>(GotoDeclaration)
+
+" in visual mode keep selection after moving indentation
+xnoremap < <gv
+xnoremap > >gv
+
+" copy whole file
+nmap <A-a> ggVG"+y
+
+" code navigation
+:map <C-j> <Action>(MethodUp)
+:map <C-k> <Action>(MethodDown)
+:map ge <Action>(GotoNextError)
+:map gE <Action>(GotoPreviousError)
+:map gs <Action>(JumpToLastChange)
+:map gl <Action>(JumpToNextChange)
+:map gn <Action>(GotoNextElementUnderCaretUsage)
+:map gN <Action>(GotoPrevElementUnderCaretUsage)
+
+" splits
+:nmap <leader>i <Action>(PrevSplitter)
+:nmap <c-s-v> <Action>(SplitVertically)
+
+" built-in navigation to navigated items works better
+:nmap <c-o> <Action>(Back)
+:nmap <c-i> <Action>(Forward)
+
+" but preserve ideavim defaults
+:map g<c-o> <c-o>
+:map g<c-i> <c-i>
+
+" close stuff
+" :map <leader>q <Action>(CloseEditor)
+" :map <leader>Q <Action>(CloseAllEditors)
+" :map <leader>w <Action>(CloseAllEditorsButActive)
+
+" search
+let g:WhichKeyDesc_search = "<leader>f Find"
+let g:WhichKeyDesc_search_everywhere = "<leader>fe Find Everywhere"
+let g:WhichKeyDesc_search_everywhere_file = "<leader>ff Find File"
+let g:WhichKeyDesc_search_everywhere_usages = "<leader>fu Find Usages"
+:map <leader>fe <Action>(SearchEverywhere)
+:map <leader>ff <Action>(GotoFile)
+:map <leader>fu <Action>(FindUsages)
+
+" Clear search buffer by entering search
+:nnoremap / :let @/ = ""<CR>/
+:nnoremap ? :let @/ = ""<CR>?
+
+:map gu <Action>(ShowUsages)
+:map gi <Action>(GotoImplementation)
+
+" other things
+:map <leader>ns <Action>(NewScratchFile)
+
+let g:WhichKeyDesc_FocusFileTree = "<leader>T Open project's file tree window"
+:map <leader>T <Action>(ActivateProjectToolWindow)
+
+" toggle line number relative
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber number
+  endif
+endfunction
+
+
+let g:WhichKeyDesc_ToggleRelativeNumberLines = "<leader>tn Toggle relative line numbers"
+nnoremap <leader>tn :call NumberToggle()<CR>
+
+" toggle which-key plugin
+let s:whichKeyEnabled = 1
+function! WhichKeyToggle()
+  if s:whichKeyEnabled
+    set which-key!
+    set notimeout!
+    let s:whichKeyEnabled = 0
+  else
+    set which-key
+    set notimeout
+    let s:whichKeyEnabled = 1
+  endif
+endfunction
+
+let g:WhichKeyDesc_toggleWhichKey = "<leader>tw Toggle WhichKey window"
+nnoremap <leader>tw :call WhichKeyToggle()<CR>
+
+" source
+let g:WhichKeyDesc_reload = "<leader>9 Reload .ideavimrc"
+:map <leader>9 <Action>(IdeaVim.ReloadVimRc.reload)
+
+let g:WhichKeyDesc_open_ideavimrc = "<leader>0 Open .ideavimrc"
+:map <leader>0 :e ~/.ideavimrc<CR>
