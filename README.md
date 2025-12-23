@@ -5,10 +5,12 @@ separate repository.
 
 ## How to import
 
-Simply clone the repository:
+Clone the repository including submodules
+(needed to automatically install tpm for tmux)
 
 ```bash
-git clone git@github.com:BenJurewicz/dotfiles.git ~/dotfiles/
+git clone --recurse-submodules git@github.com:BenJurewicz/dotfiles.git ~/dotfiles/
+
 ```
 
 Enter it:
