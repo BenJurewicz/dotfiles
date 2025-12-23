@@ -96,6 +96,8 @@ setopt hist_find_no_dups
 #bindkey '^[[A' history-search-backward
 #bindkey '^[[B' history-search-forward
 
+bindkey -v
+
 alias ls="eza --icons=always" # eza is a better looking ls
 alias cat="bat" # dropin cat with syntax highlighting
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain' # use bat to collor <command> --help
