@@ -9,7 +9,7 @@ Clone the repository including submodules
 (needed to automatically install tpm for tmux)
 
 ```bash
-git clone --recurse-submodules git@github.com:BenJurewicz/dotfiles.git ~/dotfiles/
+git clone --recurse-submodules https://github.com/BenJurewicz/dotfiles.git ~/dotfiles/
 
 ```
 
