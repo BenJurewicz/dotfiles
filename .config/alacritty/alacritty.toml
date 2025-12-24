@@ -1,0 +1,32 @@
+# Import the Catppuccin Frappe theme
+general.import = [
+  "~/.config/alacritty/catppuccin-frappe.toml"
+]
+
+[window]
+ padding = { x = 0, y = 0 }
+# decorations = "None"
+decorations = "Buttonless"
+opacity = 0.85
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold Italic"
