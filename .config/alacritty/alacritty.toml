@@ -9,9 +9,6 @@ general.import = [
 decorations = "Buttonless"
 opacity = 0.85
 
-[terminal]
-shell = "zsh"
-
 [env]
 TERM = "xterm-256color"
 
