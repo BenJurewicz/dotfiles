@@ -1,5 +1,6 @@
 .git
 .gitignore
+.gitmodules
 README.md
 LICENSE
 .stowrc
