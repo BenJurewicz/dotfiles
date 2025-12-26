@@ -30,3 +30,12 @@ You can do a trial run that does not change anything with:
 ```bash
 stow -n .
 ```
+
+## Additional steps
+
+If `bat` is installed remember to run this command so that `bat` will properly
+detect the themes:
+
+```bash
+bat cache --build
+```
