@@ -95,8 +95,10 @@ setopt hist_find_no_dups
 # overriden by atuin anyway
 #bindkey '^[[A' history-search-backward
 #bindkey '^[[B' history-search-forward
+bindkey '^[[Z' autosuggest-accept
 
-bindkey -v
+# Vim mode
+# bindkey -v
 
 alias ls="eza --icons=always" # eza is a better looking ls
 alias cat="bat" # dropin cat with syntax highlighting
