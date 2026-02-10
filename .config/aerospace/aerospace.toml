@@ -210,5 +210,5 @@ alt-l = ['join-with right', 'mode main']
 alt-w = 'mode main'
 
 # Pin the second monitor workspace to monitor with index 2
-[workspace-to-monitor-force-assignment]
-s = 2
+# [workspace-to-monitor-force-assignment]
+# s = 2
