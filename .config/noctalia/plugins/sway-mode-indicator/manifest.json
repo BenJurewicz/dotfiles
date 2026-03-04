@@ -1,0 +1,19 @@
+{
+    "id": "sway-mode-indicator",
+    "name": "Sway Mode Indicator",
+    "version": "1.0.0",
+    "minNoctaliaVersion": "3.6.0",
+    "author": "Siema",
+    "license": "MIT",
+    "repository": "",
+    "description": "Shows the current Sway binding mode in the bar",
+    "entryPoints": {
+        "barWidget": "BarWidget.qml"
+    },
+    "dependencies": {
+        "plugins": []
+    },
+    "metadata": {
+        "defaultSettings": {}
+    }
+}
