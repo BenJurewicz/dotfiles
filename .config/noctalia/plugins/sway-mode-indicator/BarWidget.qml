@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Io
 import qs.Commons
 import qs.Widgets
+import qs.Commons
 
 Item {
     id: root
@@ -29,26 +30,21 @@ Item {
     implicitHeight: contentHeight
 
     Process {
-        id: modePoller
-        command: ["swaymsg", "-t", "get_binding_state"]
-        running: false
-        stdout: StdioCollector {
-            onStreamFinished: {
-                try {
-                    const parsed = JSON.parse(this.text.trim())
-                    root.currentMode = parsed.name ?? "default"
-                } catch (e) {
+        id: modeSubscriber
+        command: ["swaymsg", "-t", "subscribe", "--monitor", '["mode", "workspace"]']
+        running: true
+        onRunningChanged: {if (!running) running = true }
+        stdout: SplitParser {
+            splitMarker: "\n"
+            onRead: data => {
+                const parsed = JSON.parse(data.trim())
+                if(parsed.old === undefined){
+                    root.currentMode = parsed.change ?? "default"
+                }else if(parsed.change === "reload"){
                     root.currentMode = "default"
                 }
             }
         }
-    }
-
-    Timer {
-        interval: 500
-        running: true
-        repeat: true
-        onTriggered: modePoller.running = true
     }
 
     Rectangle {
