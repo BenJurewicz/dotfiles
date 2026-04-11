@@ -110,6 +110,7 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain' # use bat t
 alias n="nvim"
 alias t="tmux"
 alias lg="lazygit"
+alias oc="opencode"
 
 # Better shell history (atuin)
 eval "$(atuin init zsh)"
