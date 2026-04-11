@@ -102,6 +102,9 @@ bindkey '^[[Z' autosuggest-accept
 
 if [ "$(uname -s)" = "Linux" ]; then
     alias open='xdg-open';
+    alias cb='wl-copy';
+elif [ "$(uname -s)" = "Darwin" ]; then
+    alias cb='pbcopy';
 fi
 
 alias ls="eza --icons=always" # eza is a better looking ls
