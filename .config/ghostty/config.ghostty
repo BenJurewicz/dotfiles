@@ -1,0 +1,33 @@
+theme = Catppuccin Frappe
+
+background-opacity = 0.9
+background-blur-radius = 15
+
+keybind = global:ctrl+command+c=toggle_quick_terminal
+
+#keybind = `>h=goto_split:left
+#keybind = `>j=goto_split:down
+#keybind = `>k=goto_split:up
+#keybind = `>l=goto_split:right
+#keybind = `>w=close_surface
+#keybind = `>t=new_tab
+#keybind = `>d=new_split:right
+#keybind = `>shift+d=new_split:down
+#keybind = `>`=text:`
+#keybind = `>escape=text:
+#keybind = `>bracket_left=previous_tab
+#keybind = `>bracket_right=next_tab
+
+#keybind = `>1=goto_tab:1
+#keybind = `>2=goto_tab:2
+#keybind = `>3=goto_tab:3
+#keybind = `>4=goto_tab:4
+#keybind = `>5=goto_tab:5
+#keybind = `>6=goto_tab:6
+#keybind = `>7=goto_tab:7
+#keybind = `>8=goto_tab:8
+#keybind = `>9=last_tab
+
+font-family = JetBrainsMono Nerd Font Mono
+font-feature = -calt
+
