@@ -16,7 +16,7 @@ git clone --recurse-submodules https://github.com/BenJurewicz/dotfiles.git ~/dot
 Enter it:
 
 ```bash
-cd ~/Documents/Dotfiles
+cd ~/dotfiles
 ```
 
 And run GNU Stow:
@@ -39,3 +39,6 @@ detect the themes:
 ```bash
 bat cache --build
 ```
+
+Install tpm modules for tmux using (I think but I am not sure):
+`prefix + Shift + I`
