@@ -1,2 +1,3 @@
 --target=~
 --verbose=1
+--dotfiles
