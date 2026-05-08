@@ -124,6 +124,8 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
+export PATH=$PATH:$(realpath ~/.cargo/bin)
+
 # Android studio variables
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
