@@ -1,4 +1,4 @@
 .DS_Store
-.tmux/plugins/*
-!.tmux/plugins/tpm
-.config/karabiner/automatic_backups/*
+dot-tmux/plugins/*
+!dot-tmux/plugins/tpm
+dot-config/karabiner/automatic_backups/*
