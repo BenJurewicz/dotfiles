@@ -124,11 +124,6 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
-# Automatically load custom values into PATH when entering a directory
-# with a .envrc file.
-# eval "$(direnv hook zsh)"
-
-
 # Android studio variables
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
