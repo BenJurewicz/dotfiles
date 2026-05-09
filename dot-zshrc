@@ -124,6 +124,8 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
+export EDITOR=nvim
+
 export PATH=$PATH:$(realpath ~/.cargo/bin)
 
 # Android studio variables
