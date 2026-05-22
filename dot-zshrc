@@ -45,8 +45,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:*' fzf-min-height '20'
-zstyle ':fzf-tab:complete:cd:*' continuous-trigger enter
 zstyle ':fzf-tab:complete:*' fzf-flags --preview-window=right:65%
+# This makes it so autocomplete is callend again when you select a folder
+# On one hand its cool, on the other if you have a series of directories
+# with only one directory inside fzf will automatically enter them all
+# zstyle ':fzf-tab:complete:cd:*' continuous-trigger enter
 
 # Git completions
 # export COLUMNS # uncomment if delta (git diff preview) starts not filling the preview window
