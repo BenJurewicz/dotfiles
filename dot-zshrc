@@ -104,7 +104,7 @@ bindkey -e
 # overriden by atuin anyway
 #bindkey '^[[A' history-search-backward
 #bindkey '^[[B' history-search-forward
-bindkey '^[[Z' autosuggest-accept
+bindkey '^[[Z' autosuggest-accept # Accept suggestion with shift+tab
 
 
 if [ "$(uname -s)" = "Linux" ]; then
