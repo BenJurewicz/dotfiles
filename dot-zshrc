@@ -94,14 +94,18 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# Vim mode
+# bindkey -v
+# Use Emacs-style ZLE bindings explicitly. Since EDITOR=nvim is inherited by
+# new shells, zsh otherwise defaults to vi mode before this file is loaded.
+bindkey -e
+
 # completion using arrow keys (based on history)
 # overriden by atuin anyway
 #bindkey '^[[A' history-search-backward
 #bindkey '^[[B' history-search-forward
 bindkey '^[[Z' autosuggest-accept
 
-# Vim mode
-# bindkey -v
 
 if [ "$(uname -s)" = "Linux" ]; then
     alias open='xdg-open';
