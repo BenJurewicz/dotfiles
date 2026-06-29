@@ -109,7 +109,7 @@ bindkey '^[[Z' autosuggest-accept # Accept suggestion with shift+tab
 # Open the current command line in $EDITOR with Ctrl-E.
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey '^E' edit-command-line
+bindkey '^G' edit-command-line
 
 if [ "$(uname -s)" = "Linux" ]; then
     alias open='xdg-open';
