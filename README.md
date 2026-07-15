@@ -25,6 +25,10 @@ And run GNU Stow:
 stow .
 ```
 
+> NOTE: This also configures Git to use the hooks in `~/.config/git/hooks`. The
+> `pre-push` hook rejects a push when any new commit has a subject beginning
+> with `!`.
+
 You can do a trial run that does not change anything with:
 
 ```bash

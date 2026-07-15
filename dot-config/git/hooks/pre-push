@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# Reject pushes containing commits whose subject starts with "!".
+
+remote_name=$1
+blocked_commits=
+
+while read -r local_ref local_oid remote_ref remote_oid
+do
+	# A zero local object ID means that the remote ref is being deleted.
+	case $local_oid in
+		*[!0]*) ;;
+		*) continue ;;
+	esac
+
+	case $remote_oid in
+		*[!0]*)
+		commits=$(git log --format='%H%x09%s' "$remote_oid..$local_oid" |
+			awk -F '\t' 'substr($2, 1, 1) == "!" { print $1 " " $2 }')
+		;;
+		*)
+		# For a new ref, ignore commits already known to the target remote.
+		commits=$(git log --format='%H%x09%s' \
+			"$local_oid" --not "--remotes=$remote_name" |
+			awk -F '\t' 'substr($2, 1, 1) == "!" { print $1 " " $2 }')
+		;;
+	esac
+
+	if [ -n "$commits" ]; then
+		if [ -n "$blocked_commits" ]; then
+			blocked_commits="$blocked_commits
+$commits"
+		else
+			blocked_commits=$commits
+		fi
+	fi
+done
+
+if [ -n "$blocked_commits" ]; then
+	printf '%s\n' 'Push rejected: these commit subjects start with "!":' >&2
+	printf '  %s\n' "$blocked_commits" >&2
+	printf '%s\n' 'Rename or remove those commits before pushing.' >&2
+	exit 1
+fi
+
+exit 0
