@@ -442,6 +442,27 @@
       res+=" ${modified}wip"
     fi
 
+    # Display "no-push" if an unpushed commit's subject starts with "!".
+    local unpushed_subjects subject
+    if [[ -n $VCS_STATUS_PUSH_REMOTE_NAME ]]; then
+      if (( VCS_STATUS_PUSH_COMMITS_AHEAD )); then
+        unpushed_subjects=$(command git log --format='%s' '@{push}..HEAD' 2>/dev/null) ||
+          unpushed_subjects=$(command git log --format='%s' HEAD --not --remotes 2>/dev/null)
+      fi
+    elif (( VCS_STATUS_COMMITS_AHEAD )); then
+      # With no separate push remote, Git pushes to the branch's upstream.
+      unpushed_subjects=$(command git log --format='%s' '@{upstream}..HEAD' 2>/dev/null)
+    elif [[ -z $VCS_STATUS_REMOTE_BRANCH ]]; then
+      # A new branch has no push-tracking ref yet. Check commits absent from all remotes.
+      unpushed_subjects=$(command git log --format='%s' HEAD --not --remotes 2>/dev/null)
+    fi
+    for subject in "${(@f)unpushed_subjects}"; do
+      if [[ ${subject[1]} == '!' ]]; then
+        res+=" ${conflicted}no-push"
+        break
+      fi
+    done
+
     if (( VCS_STATUS_COMMITS_AHEAD || VCS_STATUS_COMMITS_BEHIND )); then
       # ⇣42 if behind the remote.
       (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
