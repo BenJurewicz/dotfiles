@@ -118,6 +118,19 @@ elif [ "$(uname -s)" = "Darwin" ]; then
     alias cb='pbcopy';
 fi
 
+# Copy the current command line to the system clipboard with Ctrl-Y.
+copy-command-line() {
+    if print -rn -- "$BUFFER" | cb; then
+        region_highlight=("0 ${#BUFFER} standout")
+        zle -R
+        sleep 0.15
+        region_highlight=()
+        zle -R
+    fi
+}
+zle -N copy-command-line
+bindkey '^Y' copy-command-line
+
 alias ls="eza --icons=always" # eza is a better looking ls
 alias cat="bat" # dropin cat with syntax highlighting
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain' # use bat to collor <command> --help
