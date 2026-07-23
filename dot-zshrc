@@ -148,6 +148,28 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
+# Pick a file with fzf, change to its directory, and save the resulting cd
+# command (rather than only "cdd") in both Zsh and Atuin history.
+cdd() {
+    local selected target_dir history_entry atuin_history_id cd_status
+
+    selected="$(fzf)" || return
+    [[ -n "$selected" ]] || return
+
+    target_dir="${selected:A:h}"
+    history_entry="cd -- ${(q)target_dir}"
+    atuin_history_id="$(atuin history start "$history_entry")"
+
+    builtin cd -- "$target_dir"
+    cd_status=$?
+
+    [[ -n "$atuin_history_id" ]] &&
+        atuin history end --exit "$cd_status" "$atuin_history_id"
+    (( cd_status == 0 )) && print -s -- "$history_entry"
+
+    return "$cd_status"
+}
+
 export EDITOR=nvim
 
 export PATH=$PATH:$(realpath ~/.cargo/bin)
