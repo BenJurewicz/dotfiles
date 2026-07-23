@@ -2,3 +2,30 @@ git:
   pagers:
     - colorArg: always
       pager: delta --dark --paging=never
+
+customCommands:
+  - key: "U"
+    description: "Restack onto rewritten branch"
+    commandMenu:
+      - key: "p"
+        context: "localBranches"
+        description: "Preview commits to restack onto selected branch"
+        command: >-
+          fork_point=$(git merge-base --fork-point
+          {{.SelectedLocalBranch.Name | quote}} HEAD) &&
+          test -n "$fork_point" &&
+          git log --oneline "$fork_point"..HEAD
+        output: "popup"
+      - key: "r"
+        context: "localBranches"
+        description: "Restack current branch onto selected rewritten branch"
+        command: >-
+          fork_point=$(git merge-base --fork-point
+          {{.SelectedLocalBranch.Name | quote}} HEAD) &&
+          test -n "$fork_point" &&
+          git rebase --onto
+          {{.SelectedLocalBranch.Name | quote}}
+          "$fork_point"
+        loadingText: "Restacking branch..."
+        after:
+          checkForConflicts: true
