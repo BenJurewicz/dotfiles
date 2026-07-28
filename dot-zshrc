@@ -148,9 +148,10 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
+# Change Directory Interactive
 # Pick a file with fzf, change to its directory, and save the resulting cd
-# command (rather than only "cdd") in both Zsh and Atuin history.
-cdd() {
+# command (rather than only "cdi") in both Zsh and Atuin history.
+cdi() {
     local selected target_dir history_entry atuin_history_id cd_status
 
     selected="$(fzf)" || return
