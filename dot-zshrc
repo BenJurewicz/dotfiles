@@ -99,6 +99,7 @@ setopt hist_find_no_dups
 # Use Emacs-style ZLE bindings explicitly. Since EDITOR=nvim is inherited by
 # new shells, zsh otherwise defaults to vi mode before this file is loaded.
 bindkey -e
+setopt ignore_eof
 
 # completion using arrow keys (based on history)
 # overriden by atuin anyway
