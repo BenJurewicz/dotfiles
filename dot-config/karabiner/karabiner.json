@@ -5,7 +5,7 @@
                 "parameters": { "basic.to_if_alone_timeout_milliseconds": 200 },
                 "rules": [
                     {
-                        "description": "Caps Lock → '`' when pressed alone, Ctrl when held with other keys, Ctrl+Caps Lock for actual Caps Lock",
+                        "description": "Caps Lock → '`' when pressed alone, Ctrl+Caps Lock for actual Caps Lock",
                         "manipulators": [
                             {
                                 "description": "Ctrl+Caps Lock → Caps Lock",
@@ -20,13 +20,12 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Caps Lock → Ctrl (or '`' if pressed alone)",
+                                "description": "Caps Lock → '`'",
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "to": [{ "key_code": "left_control" }],
-                                "to_if_alone": [{ "key_code": "grave_accent_and_tilde" }],
+                                "to": [{ "key_code": "grave_accent_and_tilde" }],
                                 "type": "basic"
                             }
                         ]
