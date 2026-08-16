@@ -3,7 +3,7 @@ theme = Catppuccin Frappe
 background-opacity = 0.9
 background-blur-radius = 15
 
-keybind = global:ctrl+command+c=toggle_quick_terminal
+#keybind = global:ctrl+command+c=toggle_quick_terminal
 
 #keybind = `>h=goto_split:left
 #keybind = `>j=goto_split:down
