@@ -139,6 +139,7 @@ alias n="nvim"
 alias t="tmux"
 alias lg="lazygit"
 alias oc="opencode"
+alias rp="realpath"
 
 # Better shell history (atuin)
 eval "$(atuin init zsh)"
