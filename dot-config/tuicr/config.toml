@@ -1,1 +1,2 @@
 theme = "catppuccin-frappe"
+diff_watch_interval_ms = 1000
