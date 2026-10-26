@@ -2,7 +2,7 @@
 	path = ~/.config/delta/catppuccin.gitconfig
 
 [delta]
-    features = catppuccin-frappe
+    features = catppuccin-mocha
 	side-by-side = false # Prefer this set to true for cli but is set to false beacause thats better for lazygit
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
