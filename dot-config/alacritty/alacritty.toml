@@ -1,6 +1,7 @@
-# Import the Catppuccin Frappe theme
+# Import the Catppuccin theme
 general.import = [
-  "~/.config/alacritty/catppuccin-frappe.toml"
+  "~/.config/alacritty/catppuccin-mocha.toml"
+    #   "~/.config/alacritty/catppuccin-frappe.toml"
 ]
 
 [window]
