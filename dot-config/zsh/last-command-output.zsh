@@ -19,13 +19,30 @@ _last_command_notify() {
 }
 
 _last_command_clipboard() {
-    if (( $+commands[pbcopy] )); then
-        pbcopy
-    elif (( $+commands[wl-copy] )); then
-        wl-copy
-    else
-        return 127
+    # Keep stdin available for retries if a clipboard tool cannot connect.
+    local text
+    IFS= read -r -d '' text || true
+
+    # A stale/unreachable display can leave clipboard tools waiting forever.
+    # GNU coreutils calls this gtimeout on some macOS installations.
+    local -a clipboard_timeout=()
+    if (( $+commands[timeout] )); then
+        clipboard_timeout=(timeout --kill-after=1s 2s)
+    elif (( $+commands[gtimeout] )); then
+        clipboard_timeout=(gtimeout --kill-after=1s 2s)
     fi
+
+    if (( $+commands[pbcopy] )); then
+        print -rn -- "$text" | "${clipboard_timeout[@]}" pbcopy 2>/dev/null && return 0
+    fi
+    if [[ -n "$WAYLAND_DISPLAY" ]] && (( $+commands[wl-copy] )); then
+        print -rn -- "$text" | "${clipboard_timeout[@]}" wl-copy 2>/dev/null && return 0
+    fi
+    if [[ -n "$TMUX" ]] && (( $+commands[tmux] )); then
+        print -rn -- "$text" | tmux load-buffer - && return 0
+    fi
+
+    return 1
 }
 
 _last_command_prepare_capture_dir() {
@@ -112,7 +129,7 @@ _last_command_copy_current_or_last() {
     fi
 
     if ! print -rn -- "$text" | _last_command_clipboard; then
-        _last_command_notify 'No supported clipboard command found'
+        _last_command_notify 'No clipboard available (system or tmux)'
         return 1
     fi
 
@@ -148,7 +165,7 @@ _last_command_copy_output() {
     if print -rn -- "$output" | _last_command_clipboard; then
         _last_command_notify 'Copied last output'
     else
-        _last_command_notify 'No supported clipboard command found'
+        _last_command_notify 'No clipboard available (system or tmux)'
         return 1
     fi
 }
@@ -178,7 +195,7 @@ _last_command_copy_transcript() {
     if print -rn -- "$fence"$'\n'"$body"$'\n'"$fence" | _last_command_clipboard; then
         _last_command_notify 'Copied command + output'
     else
-        _last_command_notify 'No supported clipboard command found'
+        _last_command_notify 'No clipboard available (system or tmux)'
         return 1
     fi
 }
