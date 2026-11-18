@@ -137,6 +137,9 @@ eval "$(zoxide init zsh --cmd cd)"
 # fuzzy finder used for tab completion
 eval "$(fzf --zsh)"
 
+# git branch dependency managment
+eval "$(git machete completion zsh)"
+
 # Clipboard shortcuts for current/last commands and captured command output.
 source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/last-command-output.zsh"
 
